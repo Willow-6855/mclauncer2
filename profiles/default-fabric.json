@@ -1,0 +1,12 @@
+{
+  "name": "Default Fabric",
+  "version": "1.20.1",
+  "loader": "fabric",
+  "ramGB": 4,
+  "jvmArgs": "-Xmx4G",
+  "mods": [
+    { "id": "sodium", "source": "modrinth" },
+    { "id": "lithium", "source": "modrinth" }
+  ],
+  "server": null
+}

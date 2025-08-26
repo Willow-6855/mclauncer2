@@ -1,0 +1,1 @@
+# Willow Launcher\n\nRun `npm install && npm start` to develop. Run `npm run dist` to package.

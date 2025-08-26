@@ -1,0 +1,11 @@
+{
+  "defaultProfiles": [
+    {
+      "name": "Fabric 1.20.1",
+      "version": "1.20.1",
+      "loader": "fabric",
+      "mods": ["sodium", "lithium"],
+      "ramGB": 4
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+export default function ModsTab(){return <div>Mods</div>}
