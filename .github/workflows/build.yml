@@ -1,56 +1,37 @@
-name: Build and Release
+name: Build Willow Launcher
 
 on:
   push:
     tags:
-      - 'v*'   # only run when pushing version tags like v0.1.4
+      - "v*"
 
 jobs:
   build:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [20]
-    runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps --no-audit
+        run: npm install
 
-      - name: Build renderer (Vite)
-        run: npm run build
+      - name: Build React
+        run: npm run build:react
 
-      - name: Build Electron app
-        run: npm run electron:build
+      - name: Build Electron App
+        run: npm run build:electron
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: willow-launcher-${{ runner.os }}
-          path: |
-            dist/
-            release/
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: artifacts
-
-      - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: artifacts/**/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: willow-launcher-${{ matrix.os }}
+          path: dist/*
