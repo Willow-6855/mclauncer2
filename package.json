@@ -1,18 +1,24 @@
 {
   "name": "willow-launcher",
-  "version": "0.1.3",
-  "description": "Custom Minecraft launcher built with Electron + Vite",
-  "author": "YourNameOrOrg",
-  "main": "dist/main.js",
+  "version": "0.1.0",
+  "main": "electron/main.js",
+  "author": "Your Name",
+  "description": "Minecraft Willow Launcher",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "electron:dev": "vite build && electron .",
-    "electron:build": "electron-builder"
+    "build:react": "vite build",
+    "build:electron": "electron-builder",
+    "dist": "npm run build:react && npm run build:electron",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^28.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "vite": "^5.0.0",
-    "electron": "^28.0.0",
-    "electron-builder": "^24.0.0"
+    "@vitejs/plugin-react": "^4.2.0",
+    "electron-builder": "^24.13.3"
   }
 }
