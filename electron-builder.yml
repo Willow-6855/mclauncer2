@@ -1,2 +1,13 @@
 appId: com.willow.launcher
-productName: WillowLauncher
+productName: Willow Launcher
+directories:
+  output: dist
+files:
+  - dist/
+  - electron/
+  - package.json
+npmRebuild: false
+nodeGypRebuild: false
+npmArgs:
+  - --no-package-lock
+disableDependencyLock: true
