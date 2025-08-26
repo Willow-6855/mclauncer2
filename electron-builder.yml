@@ -1,12 +1,42 @@
 appId: com.willow.launcher
 productName: Willow Launcher
+copyright: © 2025 Willow Launcher
 directories:
-  output: dist
+  output: release
+  buildResources: build
+
 files:
-  - dist/
-  - electron/
+  - dist/**/*
+  - electron/**/*
   - package.json
-npmRebuild: false
-nodeGypRebuild: false
-npmArgs:
-disableDependencyLock: true
+
+asar: true
+
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Game
+
+win:
+  target:
+    - nsis
+    - zip
+  artifactName: "${productName}-${version}-win.${ext}"
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+
+mac:
+  category: public.app-category.games
+  target:
+    - dmg
+    - zip
+  artifactName: "${productName}-${version}-mac.${ext}"
+  hardenedRuntime: false   # allow unsigned local builds
+  gatekeeperAssess: false  # skip signing in CI
+
+publish:
+  provider: github
