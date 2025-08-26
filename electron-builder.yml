@@ -9,5 +9,4 @@ files:
 npmRebuild: false
 nodeGypRebuild: false
 npmArgs:
-  - --no-package-lock
 disableDependencyLock: true
