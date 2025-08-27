@@ -1,27 +1,27 @@
 {
   "name": "willow-launcher",
-  "version": "0.1.0",
-  "main": "electron/main.js",
+  "version": "0.2.1",
+  "description": "A cross-platform Electron launcher",
+  "main": "dist-electron/main.js",
   "author": {
     "name": "Willow",
     "email": "kittenmankitty2017@gmail.com"
   },
-  "description": "Minecraft Willow Launcher",
+  "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build:react": "vite build",
-    "build:electron": "electron-builder",
-    "dist": "npm run build:react && npm run build:electron",
-    "start": "electron ."
+    "start": "vite",
+    "build": "vite build",
+    "electron:dev": "electron .",
+    "electron:build": "electron-builder"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "electron": "^28.0.0",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
     "vite": "^5.0.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "electron-builder": "^24.13.3"
+    "@vitejs/plugin-react": "^4.0.0"
   }
 }
