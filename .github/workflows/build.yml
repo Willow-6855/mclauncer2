@@ -1,9 +1,9 @@
-name: Build Willow Launcher
+name: Build and Release
 
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'   # Runs only when you push a tag like v0.2.2
 
 jobs:
   build:
@@ -13,22 +13,26 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 20
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
+      - name: Build React frontend
+        run: npm run build:react
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Package Electron app
+        run: npx electron-builder --${{ matrix.os == 'ubuntu-latest' && 'linux' || matrix.os == 'windows-latest' && 'win' || 'mac' }} --publish never
+
+      - name: Upload Release Assets
+        uses: softprops/action-gh-release@v1
         with:
-          name: willow-launcher-${{ matrix.os }}
-          path: dist/*
+          files: release/**/*   # Upload everything electron-builder generated
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
