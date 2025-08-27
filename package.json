@@ -2,7 +2,10 @@
   "name": "willow-launcher",
   "version": "0.1.0",
   "main": "electron/main.js",
-  "author": "Your Name",
+  "author": {
+    "name": "Willow",
+    "email": "kittenmankitty2017@gmail.com"
+  },
   "description": "Minecraft Willow Launcher",
   "scripts": {
     "dev": "vite",
