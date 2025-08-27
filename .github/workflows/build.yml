@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Build React frontend
-        run: npm run build:react
+        run: npm run build
 
       - name: Package Electron app
         run: npx electron-builder --${{ matrix.os == 'ubuntu-latest' && 'linux' || matrix.os == 'windows-latest' && 'win' || 'mac' }} --publish never
